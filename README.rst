@@ -122,7 +122,7 @@ The terminal will prompt you with some general information like these:
 
   Clusters found: 	  4
 
-  Clustering time: 		6.80 sec.
+  Clustering time: 		3.80 sec.
 
   L-ratios:
 
