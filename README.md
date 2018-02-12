@@ -19,64 +19,52 @@ Please check our "Turorial section" to get an intuition of how to run **Spiky**.
 
 **Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in terminal:
 
-- pip install Spiky
+	- pip install Spiky
 
 
 If you need python, we strongly recommend you to install **"conda"**. (What is conda?: conda is a package and enviroment manager. It will keep things tight and clean).
 
-**"Conda" instalation:**
+	"Conda" installation:
 
-  For **Windows** users:
+		On WINDOWS:
+			- go to: https://conda.io/miniconda.html and download miniconda.
+			- Double-click the .exe file.
+			- Follow the instructions on the screen.
+			- When installation is finished, from the Start menu,
+			  open the Anaconda Prompt.
 
-  - go to: https://conda.io/miniconda.html and download miniconda (for python=3, windows)
+		On LINUX:
+			- go to: https://conda.io/miniconda.html and download miniconda.
+			- Open terminal and use the "cd" command to navegate to the folder 
+			  where you downloaded your miniconda file
+			- type: "bash Miniconda3-latest-Linux-x86_64.sh"
+			- Follow the prompts on the installer screens.
+			- To make the changes take effect, close and then re-open your 
+			  Terminal window.
 
-  - Double-click the .exe file.
+		On MAC:
+			- go to: https://conda.io/miniconda.html and download miniconda 
+			- Open terminal and use the "cd" command to navegate to the folder 
+			  where you downloaded your miniconda file
+			- type: "bash Miniconda3-latest-MacOSX-x86_64.sh"
+			- Follow the prompts on the installer screens.
+			- To make the changes take effect, close and then re-open your 
+			  Terminal window.
 
-  - Follow the instructions on the screen.
+			NOTE: matplotlib needs a framework build to work properly with conda.
+			      A workaround for this problem is obtained by type in terminal:
+				- conda install python.app
+				- Use "pythonw" rather than "python" to run python code
 
-  - When installation is finished, from the Start menu, open the Anaconda Prompt.
+	Spiky installation:
 
-  For **Linux** users:
-
-  - go to: https://conda.io/miniconda.html and download miniconda (for python=3, Linux)
-
-  - Open terminal and use the "cd" command to navegate to the folder where you downloaded your miniconda file
-
-  - type: "bash Miniconda3-latest-Linux-x86_64.sh"
-
-  - Follow the prompts on the installer screens.
-
-  - To make the changes take effect, close and then re-open your Terminal window.
-
-  For **Mac** Users:
-
-  - go to: https://conda.io/miniconda.html and download miniconda (for python=3, Mac)
-
-  - Open terminal and use the "cd" command to navegate to the folder where you downloaded your miniconda file
-
-  - type: "bash Miniconda3-latest-MacOSX-x86_64.sh"
-
-  - Follow the prompts on the installer screens.
-
-  - To make the changes take effect, close and then re-open your Terminal window.
-
-    NOTE: matplotlib needs a framework build to work properly with conda. A workaround this problem is type in terminal:
-
-      - conda install python.app
-
-      - Use "pythonw" rather than "python" to run python code
-
-**Spiky installation**
-
-Open a terminal and type what comes next:
-
-- conda create --name snowflake python=3
-
-- source activate snowflake
-
-- pip install Spiky
-
-- (Note: we encourage you to pick a different name for your virtual environment. We used "snowflake" just as an example)
+		Open a terminal and type what comes next:
+		  - conda create --name snowflake python=3
+		  - source activate snowflake
+		  - pip install Spiky
+		  
+		Note: we encourage you to pick a different name for your virtual 
+		      environment. We used "snowflake" just as an example
 
 
 Now you can test **Spiky** by runing one of the available examples. Go to TUTORIAL for instructions
@@ -93,11 +81,11 @@ The dataset we have choosen is the simultaneous intracellular and extracellular 
 
 Now, open a terminal, navegate up to "buzsaki" folder and type:
 
-- python buzsaki.py
+	python buzsaki.py
 
 The terminal will prompt you with some general information like these:
 
-	**Preprocesing**
+	Preprocesing
 		Simultaneous spikes deleted: 	144
 		Interpolated spike deleted: 	11
 		Threshold: 			              130.47
@@ -105,7 +93,7 @@ The terminal will prompt you with some general information like these:
 		Extra features:		            Energy, Amplitud, Area
 		Preprocessing time: 		      2.45 sec.
 		DONE
-	**Clustering**
+	Clustering
 		100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
 		Clusters found: 	  4
 		Clustering time: 		3.80 sec.
@@ -114,7 +102,7 @@ The terminal will prompt you with some general information like these:
 			1: 0.00
 			2: 10.30
 			3: 0.01
-			DONE
+		DONE
 
 When the process is finished, you should see a picture like the one below showing the different spikes grouped by cluster:
 
@@ -126,7 +114,7 @@ Lets now imagine for one second that we have no information about the grown trut
 
 Please, close the previews plot and wait for the blur test to finish. A print like this will be shown:
 
-	**Bluring**
+	Bluring
 		100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
 		DONE
 
@@ -144,7 +132,7 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 	This is the class constructor. It will create 
 	an instance of the main spiky class.
 
-	**PARAMETERS**
+	PARAMETERS
 	  pfile : str
 	  	Path to the ‘.json’ file containing the parameters setting. 
 		The name is a contraction for parameters_file
@@ -158,41 +146,41 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 	    		The file must contain the data of one dataset, so if you have multiple electrodes 
 			within the same file, split them up into different files.
 
-	**ATTRIBUTES**
-	Note: This attributes will be available ones you call "run" within the spiky object that you created.
+	ATTRIBUTES
+		Note: This attributes will be available ones you call "run" within the spiky object that you created.
 	
-	prms : dict
-		Dictionary containing the parameters setting.
+		prms : dict
+			Dictionary containing the parameters setting.
 
-	raw : ndarray
-		Dataset array
+		raw : ndarray
+			Dataset array
 
-	thres : float
-		Threshold level for spike detection
+		thres : float
+			Threshold level for spike detection
 
-	pks : ndarray
-		Array containing the time of spikes
+		pks : ndarray
+			Array containing the time of spikes
 
-	spks : ndarray
-		Spikes time series
+		spks : ndarray
+			Spikes time series
 
-	wvSpks : ndarray
-		Wavelet decomposition of spikes
+		wvSpks : ndarray
+			Wavelet decomposition of spikes
 
-	extFeat : ndarray
-		Array containing extra features such as Amplitud, Energy, Area
+		extFeat : ndarray
+			Array containing extra features such as Amplitud, Energy, Area
 
-	X : ndarray
-		Array containing normalized features for clustering
+		X : ndarray
+			Array containing normalized features for clustering
 
-	gmm : Gaussian mixture class object
-		The gaussian mixture object
+		gmm : Gaussian mixture class object
+			The gaussian mixture object
 
-	labels : ndarray
-		Array containing the labels for each spike
+		labels : ndarray
+			Array containing the labels for each spike
 
-	lr : ndarray
-		L-ratios for each cluster
+		lr : ndarray
+			L-ratios for each cluster
 
 ### spiky.New.loadParams(pfile=‘None’):
 	Loads the ‘.json’ file containing the parameters setting.
@@ -230,11 +218,11 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 -------------  
 ## PARAMETERS FILE:
 
-	**Traces:**
+	Traces:
 		
 		- prms[“trace”][“name”]  : 	Defines a name for this set of parameters
 
-	**Spike detection:**
+	Spike detection:
 	
 		- prms[“spkD”][“thres”]  : 	Defines the threshold level (default = 4. 
 						max/min=3.9-4.1 as defined by Quian-Quiroga paper)
@@ -247,20 +235,20 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 		- prms[“spkD”][“after”]  : 	Defines how many spaces before the peak will 
 						be taken to build the spike.
 
-	**Filtering:**
+	Filtering:
 
 		- prms[“filt”][“q”] 	 : 	Filters order.
 		- prms[“filt”][“hz”] 	 : 	Nysquit frecuency.
 		- prms[“filt”][“low”] 	 : 	Defines low frequency cut.
 		- prms[“filt”][“high”] 	 :	Defines High frequency cut.
 
-	**Spike alignment:**
+	Spike alignment:
 
 		- prms[“spkA”][“resol”]  : 	Defines the resolution used to compute interpolation and 
 						alignment (equal to the number of intermediate point taken 
 						between two consecutive points in the spike 
 
-	**Spike errase:**
+	Spike errase:
 
 		- prms[“spkE”][“minD”]   : 	Delete spike if it contains 2 peaks separated less than 
 						“minD” positions and the relative amplitud of each one 
@@ -269,21 +257,22 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 						“minD” positions and the relative amplitud of each one 
 						is bigger than “lvl”.
 
-	**Wavelet decomposition:**
+	Wavelet decomposition:
 
 		- prms[“wv”][“lvl”]      :	Level of decomposition for multilevel wavelet decomposition.
 		- prms[“wv”][“func”]     :	Function to be used for wavelet decomposition.
-		- prms[“wv”][“mode”] 	 :	Boundary condition to use in wavelet decomposition
+		- prms[“wv”][“mode”] 	   :	Boundary condition to use in wavelet decomposition
 
-	**Clustering:**
-		prms[“gmm”][“maxK”]  	 :	Maximum number of clusters to look for solutions.
-		prms[“gmm”][“ftrs”]      :	Number of features to take into account.
-		prms[“gmm”][“maxCorr”]   :	Maximum correlation allowed between features
-		prms[“gmm”][“inits”]     :	Number of random weights initializations
+	Clustering:
+		
+		- prms[“gmm”][“maxK”]  	   :	Maximum number of clusters to look for solutions.
+		- prms[“gmm”][“ftrs”]      :	Number of features to take into account.
+		- prms[“gmm”][“maxCorr”]   :	Maximum correlation allowed between features
+		- prms[“gmm”][“inits”]     :	Number of random weights initializations
 
-	**Blurring:**
+	Blurring:
 
-		prms[“blur”][“alpha”]	 :	Blurring intensity (0-1)
+		prms[“blur”][“alpha”]	   :	Blurring intensity (0-1)
   
   
   
