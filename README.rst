@@ -11,23 +11,23 @@ A Spike Sorting Package
 DESCRIPTION
 ***********
 
-**Spiky** allows you to sort spikes from single electrodes. The clustering is performed with Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we use Bayesian Information Criterion (BIC).
+**Spiky** will allow you to sort spikes from single electrodes. The clustering is performed by a Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we are using Bayesian Information Criterion (BIC).
 
-**Spiky** allows you to run a confusion test to evaluate how prone to misclassification the clusters are. And also provides a cuantitative meassure of how far each cluster is from the rest. This two tools allow us to get a better intuition about the validity of the results.
+**Spiky** is able to run confusion tests to evaluate how prone to misclassification the clusters are. And also provides a cuantitative meassure of how far each cluster is from the rest (in terms of mahalanobis distance). 
 
-Please check our "Turorial section" to get an intuition of what **Spiky** is capable of. And don't forget to keep an eye on the "Description Section" in order to understand how **Spiky** works.
+Please check our "Turorial section" to get an intuition of how to run **Spiky**. And don't forget to keep an eye on the "Description Section" to understand how **Spiky** works.
 
 INSTALATION
 ***********
 
-**Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in the terminal:
+**Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in terminal:
 
 - pip install Spiky
 
 
-If you need python, we strongly recommend you to install **"conda"** first. (What is conda?: conda is a package and enviroment manager. It will keep things tight and clean).
+If you need python, we strongly recommend you to install **"conda"**. (What is conda?: conda is a package and enviroment manager. It will keep things tight and clean).
 
-"Conda" instalation:
+**"Conda" instalation:**
 
   For **Windows** users:
 
@@ -69,7 +69,9 @@ If you need python, we strongly recommend you to install **"conda"** first. (Wha
 
       - Use "pythonw" rather than "python" to run python code
 
-Now that you have conda already installed, open a terminal and type:
+**Spiky installation**
+
+Open a terminal and type what comes next:
 
 - conda create --name snowflake python=3
 
