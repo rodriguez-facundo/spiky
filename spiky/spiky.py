@@ -25,6 +25,8 @@ class New():
 
     Atributes
     ---------
+    prms : dict
+        Dictionary containing the configuration for preprocessing and clustering
     raw : ndarray
         Dataset
     thres : float

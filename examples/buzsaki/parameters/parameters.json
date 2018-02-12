@@ -1,10 +1,12 @@
 {
     "trace" :
         {
+           "comment": "Here you can define a name for this set of parameters",
             "name" : "d533010"
         },
     "spkD" :
         {
+            "comment": "This section defines parameters regarding the peak detection process",
             "thres" : 4.0,
             "way" : "valley",
             "minD" : 15,
@@ -13,6 +15,7 @@
         },
     "filt" :
         {
+            "comment": "This section defines parameters regarding the filtering process.",
             "q" : 4,
             "hz" : 10000,
             "low": 400,
@@ -21,21 +24,25 @@
 
     "spkA" :
         {
+            "comment": "This section defines parameters regarding the interpolation and alignment process.",
             "resol" : 100
         },
     "spkE" :
         {
+            "comment": "This section defines parameters regarding the deletion of some spikes from the process.",
             "minD" : 3,
             "lvl" : 0.7
         },
     "wv" :
         {
+            "comment": "This section defines parameters regarding the wavelet decomposition of spikes.",
             "lvl" : 3,
             "func" : "Haar",
             "mode" : "zero"
         },
     "gmm" :
         {
+            "comment": "This section defines parameters regarding the clustering algorithm.",
             "maxK" : 8,
             "ftrs" : 8,
             "maxCorr" : 0.5,
@@ -43,6 +50,7 @@
         },
     "blur" :
         {
+            "comment": "This section defines parameters regarding the blurring process.",
             "alpha" : 0.25
         }
 }
