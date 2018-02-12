@@ -1,6 +1,0 @@
-numpy
-matplotlib
-progressbar2
-pywavelets
-scipy
-sklearn
