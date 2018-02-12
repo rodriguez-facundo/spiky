@@ -82,11 +82,12 @@ Now you can test **Spiky** by runing one of the available examples. Go to TUTORI
 
 # TUTORIAL
 
-Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the link http://buzsakilab.com/wp/
+
+Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the [link]( http://buzsakilab.com/wp/)
 
 The dataset we have choosen is the simultaneous intracellular and extracellular recording from the hippocampus of anesthetized rats hc-1 'd533101.dat' which is a good starting point (you can play with other examples later). You can find the dataset details here:
 
-- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): Simultaneous intracellular and extracellular recordings from hippocampus region CA1 of anesthetized rats. CRCNS.org.http://dx.doi.org/10.6080/K02Z13FP
+- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): Simultaneous intracellular and extracellular recordings from hippocampus region CA1 of anesthetized rats. CRCNS.org. [link](http://dx.doi.org/10.6080/K02Z13FP)
 
 Now, open a terminal, navegate up to "buzsaki" folder and type:
 
@@ -94,41 +95,24 @@ Now, open a terminal, navegate up to "buzsaki" folder and type:
 
 The terminal will prompt you with some general information like these:
 
-**Preprocesing**
-
-  Simultaneous spikes deleted: 	144
-
-  Interpolated spike deleted: 	11
-
-  Threshold: 			              130.47
-
-  Detected peaks:		            2977
-
-  Extra features:		            Energy, Amplitud, Area
-
-  Preprocessing time: 		      2.45 sec.
-
-  DONE
-
-**Clustering**
-
-  100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
-
-  Clusters found: 	  4
-
-  Clustering time: 		3.80 sec.
-
-  L-ratios:
-
-   0: 0.01
-
-   1: 0.00
-
-   2: 10.30
-
-   3: 0.01
-
-  DONE
+	**Preprocesing**
+		Simultaneous spikes deleted: 	144
+		Interpolated spike deleted: 	11
+		Threshold: 			              130.47
+		Detected peaks:		            2977
+		Extra features:		            Energy, Amplitud, Area
+		Preprocessing time: 		      2.45 sec.
+		DONE
+	**Clustering**
+		100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
+		Clusters found: 	  4
+		Clustering time: 		3.80 sec.
+		L-ratios:
+			0: 0.01
+			1: 0.00
+			2: 10.30
+			3: 0.01
+			DONE
 
 When the process is finished, you should see a picture like the one below showing the different spikes grouped by cluster:
 
@@ -140,9 +124,9 @@ Lets now imagine for one second that we have no information about the grown trut
 
 Please, close the previews plot and wait for the blur test to finish. A print like this will be shown:
 
-**Bluring**
-  100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
-  DONE
+	**Bluring**
+		100% | Elapsed Time: 0:00:04|################|Time: 0:00:04 | Neurons:      4
+		DONE
 
 And finally, a confusion matrix will appear on screen:
 
@@ -159,19 +143,19 @@ This is the class constructor. It will create an instance of the main spiky clas
 
 **PARAMETERS**
 
-pfile : str
+  pfile : str
 
- Path to the ‘.json’ file containing the parameters setting. The name is a contraction for parameters_file
+    Path to the ‘.json’ file containing the parameters setting. The name is a contraction for parameters_file
 
-rfile : str
+  rfile : str
 
- Path to the ‘.dat’ or ‘.mat’ file containing the raw data. The name is a contraction for raw_data_file.
+    Path to the ‘.dat’ or ‘.mat’ file containing the raw data. The name is a contraction for raw_data_file.
 
-Notes : 
+  Notes : 
 
-- Use integer 16 to represent the data (float is just a waste of resources). 
+    Use integer 16 to represent the data (float is just a waste of resources). 
 
-- The file must contain the data of one dataset, so if you have multiple electrodes within the same file, split them up into different files.
+    The file must contain the data of one dataset, so if you have multiple electrodes within the same file, split them up into different files.
 
 **ATTRIBUTES**
 
