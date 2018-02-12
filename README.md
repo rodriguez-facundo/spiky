@@ -1,14 +1,10 @@
 
-#####
-Spiky
-#####
+# Spiky
 
-=======================
-A Spike Sorting Package
-=======================
+## A Spike Sorting Package
 
-DESCRIPTION
-***********
+# DESCRIPTION
+
 
 **Spiky** will allow you to sort spikes from single electrodes. The clustering is performed by a Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we are using Bayesian Information Criterion (BIC).
 
@@ -16,8 +12,8 @@ DESCRIPTION
 
 Please check our "Turorial section" to get an intuition of how to run **Spiky**. And don't forget to keep an eye on the "Description Section" to understand how **Spiky** works.
 
-INSTALATION
-***********
+# INSTALATION
+
 
 **Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in terminal:
 
@@ -84,8 +80,7 @@ Open a terminal and type what comes next:
 Now you can test **Spiky** by runing one of the available examples. Go to TUTORIAL for instructions
 
 
-TUTORIAL
-********
+# TUTORIAL
 
 Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the link http://buzsakilab.com/wp/
 
@@ -137,7 +132,7 @@ The terminal will prompt you with some general information like these:
 
 When the process is finished, you should see a picture like the one below showing the different spikes grouped by cluster:
 
-.. image:: https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/spikes.png
+![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/spikes.png)
 
 The algorithm has found 4 clusters. We know from ground truth (provided by BuzsakiLabs in the form of intracellular recording) that the efficiency of the result is arround 90% (because we have found 860 spikes under the fourth label but the intercellular record shows that there were actually 960 spikes). What happened with the rest? Well some of the spikes just don't show up in the extracellular recording and a small fraction have been misclassified due to their low amplitud.
 
@@ -151,15 +146,14 @@ Please, close the previews plot and wait for the blur test to finish. A print li
 
 And finally, a confusion matrix will appear on screen:
 
-.. image:: https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/confusion.png
+![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/confusion.png)
 
 Now we can confirm our first intuition about the accuracy of the third cluster because after blurring each spikes with the noise of its own cluster, the algorithm is able to reproduce the same results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
 
-DOCUMENTATION
-*************
+# DOCUMENTATION
 
-spiky.New(pfile=‘None’, rfile=‘None’):
---------------------------------------
+
+### spiky.New(pfile=‘None’, rfile=‘None’):
 
 This is the class constructor. It will create an instance of the main spiky class.
 
@@ -227,8 +221,8 @@ lr : ndarray
  L-ratios for each cluster
 	
 
-spiky.New.loadParams(pfile=‘None’):
------------------------------------
+### spiky.New.loadParams(pfile=‘None’):
+
 
 Loads the ‘.json’ file containing the parameters setting.
 
@@ -236,8 +230,7 @@ pfile : str
 
   Path to parameters '.json' file
 
-spiky.New.loadRawArray(rarray):
--------------------------------
+### spiky.New.loadRawArray(rarray):
 
 Loads an array containing the data set.
 
@@ -245,8 +238,8 @@ rarray : ndarray
 
   Array containing the dataset
 
-spiky.New.loadRawFile(rfile):
------------------------------
+### spiky.New.loadRawFile(rfile):
+
 
 Loads a ‘.mat’ or ‘.dat’ file containing the data set.
 
@@ -254,28 +247,28 @@ rfile : str
 
   Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
 
-spiky.New.filter():
--------------------
+### spiky.New.filter():
+
 
 Filters dataset using cascaded second-order sections digital IIR filter defined by sos. The parameters are taken from the ‘.json’ configuration file. The filter is zero phase-shift
 
-spiky.New.run():
-----------------
+### spiky.New.run():
+
 
 Main clustering method. The parameters are set as specified by ‘.json’ file.
 
-spiky.New,plotClusters():
--------------------------
+## spiky.New,plotClusters():
+
 
 Plots spike clusters as found by “run” method.
 
-spiky.New.blur():
------------------
+## spiky.New.blur():
+
 
 Re-run the clustering algorithm after performing a blur of spikes within same labels, and plots the confusion matrix.
   
-PARAMETERS FILE:
-----------------
+## PARAMETERS FILE:
+
 
 **Traces:**
 
@@ -323,8 +316,8 @@ PARAMETERS FILE:
 
 - prms[“blur”][“alpha”] : Intensity of blurring (0-1)
 
-**REFERENCES**
---------------
+# REFERENCES
+
 
 Preprosesing of data is handled as described by:
 
@@ -344,11 +337,11 @@ Example dataset was obtained from:
 - Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): **Simultaneous intracellular and extracellular recordings from hippocampus region CA1 of anesthetized rats**. CRCNS.org.http://dx.doi.org/10.6080/K02Z13FP
 
 
-**ACKNOWLEDGMENT**
-------------------
+# ACKNOWLEDGMENT
 
-I would like to thank Eugenio Urdapilleta [1]_ and Damian Dellavale [2]_ both CAB researchers for their guidance.
+
+I would like to thank Eugenio Urdapilleta <sup>1</sup>and Damian Dellavale<sup>2</sup> both CAB researchers for their guidance.
  
-:: [1] Statistical and Interdisciplinary Physics Division, Atomic Centre Bariloche, Argentina.
+1 : Statistical and Interdisciplinary Physics Division, Atomic Centre Bariloche, Argentina.
  
-:: [2] Low Temperature Laboratory, Atomic Centre Bariloche, Argentina.
+2 : Low Temperature Laboratory, Atomic Centre Bariloche, Argentina.
