@@ -227,89 +227,95 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 	Re-run the clustering algorithm after performing a 
 	blur of spikes within same labels, and plots the 
 	confusion matrix.
-  
+-------------  
 ## PARAMETERS FILE:
 
-**Traces:**
+	**Traces:**
+		
+		- prms[“trace”][“name”]  : 	Defines a name for this set of parameters
 
-- prms[“trace”][“name”] : Defines a name for this set of parameters
+	**Spike detection:**
+	
+		- prms[“spkD”][“thres”]  : 	Defines the threshold level (default = 4. 
+						max/min=3.9-4.1 as defined by Quian-Quiroga paper)
+		- prms[“spkD”][“way”] 	 :	Defines if the algorithm will search for maximum or 
+						minimums in the dataset. (values: “valley” - “peaks”)
+		- prms[“spkD”][“minD”] 	 : 	Defines how many spaces between two consecutive peaks 
+						there should be in order to take them as separated peaks.
+		- prms[“spkD”][“before”] : 	Defines how many spaces after the peak 
+						will be taken to build the spike.
+		- prms[“spkD”][“after”]  : 	Defines how many spaces before the peak will 
+						be taken to build the spike.
 
-**Spike detection:**
+	**Filtering:**
 
-- prms[“spkD”][“thres”] : Defines the threshold level (default = 4. max/min=3.9-4.1 as defined by Quian-Quiroga paper)
-- prms[“spkD”][“way”] :	Defines if the algorithm will search for maximum or minimums in the dataset. (values: “valley” - “peaks”)
-- prms[“spkD”][“minD”] : Defines how many spaces between two consecutive peaks there should be in order to take them as separated peaks.
-- prms[“spkD”][“before”] : Defines how many spaces after the peak will be taken to build the spike.
-- prms[“spkD”][“after”] : Defines how many spaces before the peak will be taken to build the spike.
+		- prms[“filt”][“q”] 	 : 	Filters order.
+		- prms[“filt”][“hz”] 	 : 	Nysquit frecuency.
+		- prms[“filt”][“low”] 	 : 	Defines low frequency cut.
+		- prms[“filt”][“high”] 	 :	Defines High frequency cut.
 
-**Filtering:**
+	**Spike alignment:**
 
-- prms[“filt”][“q”] : Filters order.
-- prms[“filt”][“hz”] : Nysquit frecuency.
-- prms[“filt”][“low”] : Defines low frequency cut.
-- prms[“filt”][“high”] : Defines High frequency cut.
+		- prms[“spkA”][“resol”]  : 	Defines the resolution used to compute interpolation and 
+						alignment (equal to the number of intermediate point taken 
+						between two consecutive points in the spike 
 
-**Spike alignment:**
+	**Spike errase:**
 
-- prms[“spkA”][“resol”] : Defines the resolution used to compute interpolation and alignment (equal to the number of intermediate point taken between two consecutive points in the spike 
+		- prms[“spkE”][“minD”]   : 	Delete spike if it contains 2 peaks separated less than 
+						“minD” positions and the relative amplitud of each one 
+						is bigger than “lvl”.
+		- prms[“spkE”][“lvl”]    : 	Delete spike if it contains 2 peaks separated less than 
+						“minD” positions and the relative amplitud of each one 
+						is bigger than “lvl”.
 
-**Spike errase:**
+	**Wavelet decomposition:**
 
-- prms[“spkE”][“minD”] : Delete spike if it contains 2 peaks separated less than “minD” positions and the relative amplitud of each one is bigger than “lvl”.
+		- prms[“wv”][“lvl”]      :	Level of decomposition for multilevel wavelet decomposition.
+		- prms[“wv”][“func”]     :	Function to be used for wavelet decomposition.
+		- prms[“wv”][“mode”] 	 :	Boundary condition to use in wavelet decomposition
 
-- prms[“spkE”][“lvl”] : Delete spike if it contains 2 peaks separated less than “minD” positions and the relative amplitud of each one is bigger than “lvl”.
+	**Clustering:**
+		prms[“gmm”][“maxK”]  	 :	Maximum number of clusters to look for solutions.
+		prms[“gmm”][“ftrs”]      :	Number of features to take into account.
+		prms[“gmm”][“maxCorr”]   :	Maximum correlation allowed between features
+		prms[“gmm”][“inits”]     :	Number of random weights initializations
 
-**Wavelet decomposition:**
+	**Blurring:**
 
-- prms[“wv”][“lvl”] : Level of decomposition for multilevel wavelet decomposition.
-- prms[“wv”][“func”] : Function to be used for wavelet decomposition.
-- prms[“wv”][“mode”] : Boundary condition to use in wavelet decomposition
-
-**Clustering:**
-
-- prms[“gmm”][“maxK”] : Maximum number of clusters to look for solutions.
-- prms[“gmm”][“ftrs”] : Number of features to take into account.
-- prms[“gmm”][“maxCorr”] : Maximum correlation allowed between features
-- prms[“gmm”][“inits”] : Number of random weights initializations
-
-**Blurring:**
-
-- prms[“blur”][“alpha”] : Intensity of blurring (0-1)
-
+		prms[“blur”][“alpha”]	 :	Blurring intensity (0-1)
+  
+  
+  
+---
+### ACKNOWLEDGMENT
+---
+I would like to thank Eugenio Urdapilleta[<sup>1</sup>](https://www.researchgate.net/profile/Eugenio_Urdapilleta) and Damian Dellavale[<sup>2</sup>](https://www.researchgate.net/profile/Damian_Dellavale2) both CAB researchers for their guidance. 
+  
 ---
 ### REFERENCES
 ---
 
 Preprosesing of data is handled as described by:
 
-	- Quian Quiroga R, Nadasdy Z, Ben-Shaul Y (2004) 
-	**Unsupervised Spike Detection and Sorting with 
-	Wavelets and Superparamagnetic Clustering**. 
-	Neural Comp 16:1661-1687.
+	- Quian Quiroga R, Nadasdy Z, Ben-Shaul Y (2004) **Unsupervised Spike Detection and Sorting with 
+	Wavelets and Superparamagnetic Clustering**. Neural Comp 16:1661-1687.
 
 
 L-ratio calculation is computed following:
 
-	- Schmitzer-Torbert et al. **Quantitative measures of 
-	cluster quality for use in extracellular recordings** 
+	- Schmitzer-Torbert et al. **Quantitative measures of cluster quality for use in extracellular recordings** 
 	Neuroscience 131 (2005) 1–11 11
 
 Confusion Matrix calculation is computed acording to:
 
-	- Alex H. Barnetta, Jeremy F. Maglandb, Leslie F. 
-	Greengardc **Validation of neural spike sorting 
-	algorithms without ground-truth information** 
-	Journal of Neuroscience Methods 264 (2016) 65–77
+	- Alex H. Barnetta, Jeremy F. Maglandb, Leslie F. Greengardc **Validation of neural spike sorting 
+	algorithms without ground-truth information** Journal of Neuroscience Methods 264 (2016) 65–77
 
 Example dataset was obtained from:
 
-	- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; 
-	Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): 
-	**Simultaneous intracellular and extracellular recordings 
-	from hippocampus region CA1 of anesthetized rats**. 
+	- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J;  Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): 
+	**Simultaneous intracellular and extracellular recordings from hippocampus region CA1 of anesthetized rats**. 
 	CRCNS.org.http://dx.doi.org/10.6080/K02Z13FP
 
----
-### ACKNOWLEDGMENT
----
-I would like to thank Eugenio Urdapilleta[<sup>1</sup>](https://www.researchgate.net/profile/Eugenio_Urdapilleta) and Damian Dellavale[<sup>2</sup>](https://www.researchgate.net/profile/Damian_Dellavale2) both CAB researchers for their guidance.
+
