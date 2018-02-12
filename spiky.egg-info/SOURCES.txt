@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+spiky/__init__.py
+spiky/spiky.py
+spiky/toolbox.py
+spiky.egg-info/PKG-INFO
+spiky.egg-info/SOURCES.txt
+spiky.egg-info/dependency_links.txt
+spiky.egg-info/requires.txt
+spiky.egg-info/top_level.txt

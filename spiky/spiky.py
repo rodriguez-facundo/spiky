@@ -82,7 +82,7 @@ class New():
                 if '.mat' in rfile:
                     name = sio.whosmat(rfile)[0][0]
                     self.raw = sio.loadmat(rfile)['data'][0]
-                elif '.dat':
+                elif '.dat' in rfile:
                     self.raw = np.fromfile(rfile, tdype='int16')
                 else:
                     print('Support only ".mat" or ".dat" files')
