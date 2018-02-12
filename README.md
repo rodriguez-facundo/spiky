@@ -128,7 +128,7 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 ### DOCUMENTATION
 ---
 
-### spiky.New(pfile=‘None’, rfile=‘None’):
+#### spiky.New(pfile=‘None’, rfile=‘None’):
 	This is the class constructor. It will create 
 	an instance of the main spiky class.
 
@@ -182,41 +182,41 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 	  lr : ndarray
 	    L-ratios for each cluster
 
-### spiky.New.loadParams(pfile=‘None’):
+#### spiky.New.loadParams(pfile=‘None’):
 	Loads the ‘.json’ file containing the parameters setting.
 	
 	pfile : str
 	  Path to parameters '.json' file
 
-### spiky.New.loadRawArray(rarray):
+#### spiky.New.loadRawArray(rarray):
 	Loads an array containing the data set.
 
 	rarray : ndarray
 	  Array containing the dataset
 
-### spiky.New.loadRawFile(rfile):
+#### spiky.New.loadRawFile(rfile):
 	Loads a ‘.mat’ or ‘.dat’ file containing the data set.
 
 	rfile : str
 	  Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
 
-### spiky.New.filter():
+#### spiky.New.filter():
 	Filters dataset using cascaded second-order sections digital 
 	IIR filter defined by sos. The parameters are taken from the 
 	‘.json’ configuration file. The filter is zero phase-shift
 
-### spiky.New.run():
+#### spiky.New.run():
 	Main clustering method. The parameters are set as specified by ‘.json’ file.
 
-## spiky.New,plotClusters():
+#### spiky.New,plotClusters():
 	Plots spike clusters as found by “run” method.
 
-## spiky.New.blur():
+#### spiky.New.blur():
 	Re-run the clustering algorithm after performing a 
 	blur of spikes within same labels, and plots the 
 	confusion matrix.
 -------------  
-## PARAMETERS FILE:
+#### PARAMETERS FILE:
 
 	Traces:
 
