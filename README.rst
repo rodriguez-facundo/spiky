@@ -7,7 +7,6 @@ Spiky
 A Spike Sorting Package
 =======================
 
-
 DESCRIPTION
 ***********
 
@@ -348,8 +347,8 @@ Example dataset was obtained from:
 **ACKNOWLEDGMENT**
 ------------------
 
-I would like to thank Eugenio Urdapilleta <sup>1</sup> and Damian Dellavale <sup>2</sup> both CAB researchers for their guidance.
+I would like to thank Eugenio Urdapilleta [1]_ and Damian Dellavale [2]_ both CAB researchers for their guidance.
  
- 1 Statistical and Interdisciplinary Physics Division, Atomic Centre Bariloche, Argentina.
+:: [1] Statistical and Interdisciplinary Physics Division, Atomic Centre Bariloche, Argentina.
  
- 2 Low Temperature Laboratory, Atomic Centre Bariloche, Argentina.
+:: [2] Low Temperature Laboratory, Atomic Centre Bariloche, Argentina.
