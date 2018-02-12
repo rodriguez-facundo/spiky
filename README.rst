@@ -149,7 +149,161 @@ Now we can confirm our first intuition about the accuracy of the third cluster b
 **Documentation**
 -----------------
 
+**spiky.New(pfile=‘None’, rfile=‘None’)**
 
+This is the class constructor. It will create an instance of the main spiky class.
+
+PARAMETERS
+
+pfile : str
+
+ Path to the ‘.json’ file containing the parameters setting. The name is a contraction for parameters_file
+
+rfile : str
+
+ Path to the ‘.dat’ or ‘.mat’ file containing the raw data. The name is a contraction for raw_data_file.
+
+Notes : 
+
+- Use integer 16 to represent the data (float is just a waste of resources). 
+
+- The file must contain the data of one dataset, so if you have multiple electrodes within the same file, split them up into different files.
+
+ATTRIBUTES
+
+prms : dict
+
+ Dictionary containing the parameters setting.
+
+raw : ndarray
+
+ Dataset array
+
+thres : float
+
+ Threshold level for spike detection
+
+pks : ndarray
+
+ Array containing the time of spikes
+
+spks : ndarray
+
+ Spikes time series
+
+wvSpks : ndarray
+
+ Wavelet decomposition of spikes
+
+extFeat : ndarray
+
+ Array containing extra features such as Amplitud, Energy, Area
+
+X : ndarray
+
+ Array containing normalized features for clustering
+
+gmm : Gaussian mixture class object
+
+ The gaussian mixture object
+
+labels : ndarray
+
+ Array containing the labels for each spike
+
+lr : ndarray
+
+ L-ratios for each cluster
+	
+
+**spiky.New.loadParams(pfile=‘None’):**
+
+Loads the ‘.json’ file containing the parameters setting.
+
+pfile : str
+
+  Path to parameters '.json' file
+
+**spiky.New.loadRawArray(rarray):**
+
+Loads an array containing the data set.
+
+rarray : ndarray
+
+  Array containing the dataset
+
+**spiky.New.loadRawFile(rfile):**
+
+Loads a ‘.mat’ or ‘.dat’ file containing the data set.
+
+rfile : str
+
+  Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
+
+**spiky.New.filter():**
+
+Filters dataset using cascaded second-order sections digital IIR filter defined by sos. The parameters are taken from the ‘.json’ configuration file. The filter is zero phase-shift
+
+**spiky.New.run():**
+
+Main clustering method. The parameters are set as specified by ‘.json’ file.
+
+**spiky.New,plotClusters():**
+
+Plots spike clusters as found by “run” method.
+
+**spiky.New.blur():**
+
+Re-run the clustering algorithm after performing a blur of spikes within same labels, and plots the confusion matrix.
+  
+**PARAMETERS FILE:**
+
+Traces:
+	
+- prms[“trace”][“name”] : Defines a name for this set of parameters
+
+Spike detection: 
+
+- prms[“spkD”][“thres”] :	Defines the threshold level (default = 4. max/min=3.9-4.1 as defined by Quian-Quiroga paper)
+- prms[“spkD”][“way”] :	Defines if the algorithm will search for maximum or minimums in the dataset. (values: “valley” - “peaks”)
+- prms[“spkD”][“minD”] : Defines how many spaces between two consecutive peaks there should be in order to take them as separated peaks.
+- prms[“spkD”][“before”] : Defines how many spaces after the peak will be taken to build the spike.
+- prms[“spkD”][“after”] : Defines how many spaces before the peak will be taken to build the spike.
+
+Filtering:
+
+- prms[“filt”][“q”] : Filters order.
+- prms[“filt”][“hz”] : Nysquit frecuency.
+- prms[“filt”][“low”] : Defines low frequency cut.
+- prms[“filt”][“high”] : Defines High frequency cut.
+
+Spike alignment:
+
+- prms[“spkA”][“resol”] : Defines the resolution used to compute interpolation and alignment (equal to the number of intermediate point taken between two consecutive points in the spike 
+
+Spike errase:
+
+- prms[“spkE”][“minD”] : Delete spike if it contains 2 peaks separated less than “minD” and the relative amplitud of each one is bigger than “lvl”.
+positions.
+
+- prms[“spkE”][“lvl”] : Delete spike if it contains 2 peaks separated less than “minD” and the relative amplitud of each one is bigger than “lvl”.
+
+Wavelet decomposition:
+
+- prms[“wv”][“lvl”] : Level of decomposition for multilevel wavelet decomposition.
+- prms[“wv”][“func”] : Function to be used for wavelet decomposition.
+- prms[“wv”][“mode”] : Boundary condition to use in wavelet decomposition
+
+Clustering:
+
+- prms[“gmm”][“maxK”] : Maximum number of clusters to look for solutions.
+- prms[“gmm”][“ftrs”] : Number of features to take into account.
+- prms[“gmm”][“maxCorr”] : Maximum correlation allowed between features
+- prms[“gmm”][“inits”] : Number of random weights initializations
+
+Blurring:
+
+- prms[“blur”][“alpha”] : Intensity of blurring (0-1)
 
 **REFERENCES**
 --------------
