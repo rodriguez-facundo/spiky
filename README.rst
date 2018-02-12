@@ -1,8 +1,15 @@
-A Spike Sorting Algorithm
-=========================
 
-**DESCRIPTION**
----------------
+#####
+Spiky
+#####
+
+=======================
+A Spike Sorting Package
+=======================
+
+
+DESCRIPTION
+***********
 
 **Spiky** allows you to sort spikes from single electrodes. The clustering is performed with Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we use Bayesian Information Criterion (BIC).
 
@@ -10,8 +17,9 @@ A Spike Sorting Algorithm
 
 Please check our "Turorial section" to get an intuition of what **Spiky** is capable of. And don't forget to keep an eye on the "Description Section" in order to understand how **Spiky** works.
 
-**INSTALATION**
----------------
+INSTALATION
+***********
+
 **Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in the terminal:
 
 - pip install Spiky
@@ -75,8 +83,8 @@ Now that you have conda already installed, open a terminal and type:
 Now you can test **Spiky** by runing one of the available examples. Go to TUTORIAL for instructions
 
 
-**TUTORIAL**
-------------
+TUTORIAL
+********
 
 Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the link http://buzsakilab.com/wp/
 
@@ -146,14 +154,15 @@ And finally, a confusion matrix will appear on screen:
 
 Now we can confirm our first intuition about the accuracy of the third cluster because after blurring each spikes with the noise of its own cluster, the algorithm is able to reproduce the same results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
 
-**Documentation**
------------------
+DOCUMENTATION
+*************
 
-**spiky.New(pfile=‘None’, rfile=‘None’)**
+spiky.New(pfile=‘None’, rfile=‘None’):
+--------------------------------------
 
 This is the class constructor. It will create an instance of the main spiky class.
 
-PARAMETERS
+**PARAMETERS**
 
 pfile : str
 
@@ -169,8 +178,9 @@ Notes :
 
 - The file must contain the data of one dataset, so if you have multiple electrodes within the same file, split them up into different files.
 
-ATTRIBUTES
+**ATTRIBUTES**
 
+Note: This attributes will be available ones you call "run" within the spiky object that you created.
 prms : dict
 
  Dictionary containing the parameters setting.
@@ -216,7 +226,8 @@ lr : ndarray
  L-ratios for each cluster
 	
 
-**spiky.New.loadParams(pfile=‘None’):**
+spiky.New.loadParams(pfile=‘None’):
+-----------------------------------
 
 Loads the ‘.json’ file containing the parameters setting.
 
@@ -224,7 +235,8 @@ pfile : str
 
   Path to parameters '.json' file
 
-**spiky.New.loadRawArray(rarray):**
+spiky.New.loadRawArray(rarray):
+-------------------------------
 
 Loads an array containing the data set.
 
@@ -232,7 +244,8 @@ rarray : ndarray
 
   Array containing the dataset
 
-**spiky.New.loadRawFile(rfile):**
+spiky.New.loadRawFile(rfile):
+-----------------------------
 
 Loads a ‘.mat’ or ‘.dat’ file containing the data set.
 
@@ -240,68 +253,72 @@ rfile : str
 
   Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
 
-**spiky.New.filter():**
+spiky.New.filter():
+-------------------
 
 Filters dataset using cascaded second-order sections digital IIR filter defined by sos. The parameters are taken from the ‘.json’ configuration file. The filter is zero phase-shift
 
-**spiky.New.run():**
+spiky.New.run():
+----------------
 
 Main clustering method. The parameters are set as specified by ‘.json’ file.
 
-**spiky.New,plotClusters():**
+spiky.New,plotClusters():
+-------------------------
 
 Plots spike clusters as found by “run” method.
 
-**spiky.New.blur():**
+spiky.New.blur():
+-----------------
 
 Re-run the clustering algorithm after performing a blur of spikes within same labels, and plots the confusion matrix.
   
-**PARAMETERS FILE:**
+PARAMETERS FILE:
+----------------
 
-Traces:
-	
+**Traces:**
+
 - prms[“trace”][“name”] : Defines a name for this set of parameters
 
-Spike detection: 
+**Spike detection:**
 
-- prms[“spkD”][“thres”] :	Defines the threshold level (default = 4. max/min=3.9-4.1 as defined by Quian-Quiroga paper)
+- prms[“spkD”][“thres”] : Defines the threshold level (default = 4. max/min=3.9-4.1 as defined by Quian-Quiroga paper)
 - prms[“spkD”][“way”] :	Defines if the algorithm will search for maximum or minimums in the dataset. (values: “valley” - “peaks”)
 - prms[“spkD”][“minD”] : Defines how many spaces between two consecutive peaks there should be in order to take them as separated peaks.
 - prms[“spkD”][“before”] : Defines how many spaces after the peak will be taken to build the spike.
 - prms[“spkD”][“after”] : Defines how many spaces before the peak will be taken to build the spike.
 
-Filtering:
+**Filtering:**
 
 - prms[“filt”][“q”] : Filters order.
 - prms[“filt”][“hz”] : Nysquit frecuency.
 - prms[“filt”][“low”] : Defines low frequency cut.
 - prms[“filt”][“high”] : Defines High frequency cut.
 
-Spike alignment:
+**Spike alignment:**
 
 - prms[“spkA”][“resol”] : Defines the resolution used to compute interpolation and alignment (equal to the number of intermediate point taken between two consecutive points in the spike 
 
-Spike errase:
+**Spike errase:**
 
-- prms[“spkE”][“minD”] : Delete spike if it contains 2 peaks separated less than “minD” and the relative amplitud of each one is bigger than “lvl”.
-positions.
+- prms[“spkE”][“minD”] : Delete spike if it contains 2 peaks separated less than “minD” positions and the relative amplitud of each one is bigger than “lvl”.
 
-- prms[“spkE”][“lvl”] : Delete spike if it contains 2 peaks separated less than “minD” and the relative amplitud of each one is bigger than “lvl”.
+- prms[“spkE”][“lvl”] : Delete spike if it contains 2 peaks separated less than “minD” positions and the relative amplitud of each one is bigger than “lvl”.
 
-Wavelet decomposition:
+**Wavelet decomposition:**
 
 - prms[“wv”][“lvl”] : Level of decomposition for multilevel wavelet decomposition.
 - prms[“wv”][“func”] : Function to be used for wavelet decomposition.
 - prms[“wv”][“mode”] : Boundary condition to use in wavelet decomposition
 
-Clustering:
+**Clustering:**
 
 - prms[“gmm”][“maxK”] : Maximum number of clusters to look for solutions.
 - prms[“gmm”][“ftrs”] : Number of features to take into account.
 - prms[“gmm”][“maxCorr”] : Maximum correlation allowed between features
 - prms[“gmm”][“inits”] : Number of random weights initializations
 
-Blurring:
+**Blurring:**
 
 - prms[“blur”][“alpha”] : Intensity of blurring (0-1)
 
