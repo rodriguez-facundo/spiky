@@ -1,10 +1,10 @@
 
-# Spiky
+### **Spiky** - A Spike Sorting Package
 
-## A Spike Sorting Package
 
-# DESCRIPTION
-
+---
+### DESCRIPTION
+---
 
 **Spiky** will allow you to sort spikes from single electrodes. The clustering is performed by a Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we are using Bayesian Information Criterion (BIC).
 
@@ -12,8 +12,10 @@
 
 Please check our "Turorial section" to get an intuition of how to run **Spiky**. And don't forget to keep an eye on the "Description Section" to understand how **Spiky** works.
 
-# INSTALATION
 
+---
+### INSTALATION
+---
 
 **Spiky** is available through pypi so if you are runing python in your computer, go ahead and type in terminal:
 
@@ -79,9 +81,9 @@ Open a terminal and type what comes next:
 
 Now you can test **Spiky** by runing one of the available examples. Go to TUTORIAL for instructions
 
-
-# TUTORIAL
-
+---
+### TUTORIAL
+---
 
 Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the [link]( http://buzsakilab.com/wp/)
 
@@ -134,125 +136,99 @@ And finally, a confusion matrix will appear on screen:
 
 Now we can confirm our first intuition about the accuracy of the third cluster because after blurring each spikes with the noise of its own cluster, the algorithm is able to reproduce the same results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
 
-# DOCUMENTATION
-
+---
+### DOCUMENTATION
+---
 
 ### spiky.New(pfile=‘None’, rfile=‘None’):
+	This is the class constructor. It will create 
+	an instance of the main spiky class.
 
-This is the class constructor. It will create an instance of the main spiky class.
+	**PARAMETERS**
+	  pfile : str
+	  	Path to the ‘.json’ file containing the parameters setting. 
+		The name is a contraction for parameters_file
 
-**PARAMETERS**
+	  rfile : str
+	  	Path to the ‘.dat’ or ‘.mat’ file containing the raw data. 
+		The name is a contraction for raw_data_file.
 
-  pfile : str
+	  	Notes : 
+			Use integer 16 to represent the data (float is just a waste of resources). 
+	    		The file must contain the data of one dataset, so if you have multiple electrodes 
+			within the same file, split them up into different files.
 
-    Path to the ‘.json’ file containing the parameters setting. The name is a contraction for parameters_file
-
-  rfile : str
-
-    Path to the ‘.dat’ or ‘.mat’ file containing the raw data. The name is a contraction for raw_data_file.
-
-  Notes : 
-
-    Use integer 16 to represent the data (float is just a waste of resources). 
-
-    The file must contain the data of one dataset, so if you have multiple electrodes within the same file, split them up into different files.
-
-**ATTRIBUTES**
-
-Note: This attributes will be available ones you call "run" within the spiky object that you created.
-prms : dict
-
- Dictionary containing the parameters setting.
-
-raw : ndarray
-
- Dataset array
-
-thres : float
-
- Threshold level for spike detection
-
-pks : ndarray
-
- Array containing the time of spikes
-
-spks : ndarray
-
- Spikes time series
-
-wvSpks : ndarray
-
- Wavelet decomposition of spikes
-
-extFeat : ndarray
-
- Array containing extra features such as Amplitud, Energy, Area
-
-X : ndarray
-
- Array containing normalized features for clustering
-
-gmm : Gaussian mixture class object
-
- The gaussian mixture object
-
-labels : ndarray
-
- Array containing the labels for each spike
-
-lr : ndarray
-
- L-ratios for each cluster
+	**ATTRIBUTES**
+	Note: This attributes will be available ones you call "run" within the spiky object that you created.
 	
+	prms : dict
+		Dictionary containing the parameters setting.
+
+	raw : ndarray
+		Dataset array
+
+	thres : float
+		Threshold level for spike detection
+
+	pks : ndarray
+		Array containing the time of spikes
+
+	spks : ndarray
+		Spikes time series
+
+	wvSpks : ndarray
+		Wavelet decomposition of spikes
+
+	extFeat : ndarray
+		Array containing extra features such as Amplitud, Energy, Area
+
+	X : ndarray
+		Array containing normalized features for clustering
+
+	gmm : Gaussian mixture class object
+		The gaussian mixture object
+
+	labels : ndarray
+		Array containing the labels for each spike
+
+	lr : ndarray
+		L-ratios for each cluster
 
 ### spiky.New.loadParams(pfile=‘None’):
-
-
-Loads the ‘.json’ file containing the parameters setting.
-
-pfile : str
-
-  Path to parameters '.json' file
+	Loads the ‘.json’ file containing the parameters setting.
+	
+	pfile : str
+		Path to parameters '.json' file
 
 ### spiky.New.loadRawArray(rarray):
+	Loads an array containing the data set.
 
-Loads an array containing the data set.
-
-rarray : ndarray
-
-  Array containing the dataset
+	rarray : ndarray
+		Array containing the dataset
 
 ### spiky.New.loadRawFile(rfile):
+	Loads a ‘.mat’ or ‘.dat’ file containing the data set.
 
-
-Loads a ‘.mat’ or ‘.dat’ file containing the data set.
-
-rfile : str
-
-  Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
+	rfile : str
+		Path to the ‘.dat’ or ‘.mat’ file containing the raw data.
 
 ### spiky.New.filter():
-
-
-Filters dataset using cascaded second-order sections digital IIR filter defined by sos. The parameters are taken from the ‘.json’ configuration file. The filter is zero phase-shift
+	Filters dataset using cascaded second-order sections digital 
+	IIR filter defined by sos. The parameters are taken from the 
+	‘.json’ configuration file. The filter is zero phase-shift
 
 ### spiky.New.run():
-
-
-Main clustering method. The parameters are set as specified by ‘.json’ file.
+	Main clustering method. The parameters are set as specified by ‘.json’ file.
 
 ## spiky.New,plotClusters():
-
-
-Plots spike clusters as found by “run” method.
+	Plots spike clusters as found by “run” method.
 
 ## spiky.New.blur():
-
-
-Re-run the clustering algorithm after performing a blur of spikes within same labels, and plots the confusion matrix.
+	Re-run the clustering algorithm after performing a 
+	blur of spikes within same labels, and plots the 
+	confusion matrix.
   
 ## PARAMETERS FILE:
-
 
 **Traces:**
 
@@ -300,32 +276,40 @@ Re-run the clustering algorithm after performing a blur of spikes within same la
 
 - prms[“blur”][“alpha”] : Intensity of blurring (0-1)
 
-# REFERENCES
-
+---
+### REFERENCES
+---
 
 Preprosesing of data is handled as described by:
 
-- Quian Quiroga R, Nadasdy Z, Ben-Shaul Y (2004) **Unsupervised Spike Detection and Sorting with Wavelets and Superparamagnetic Clustering**. Neural Comp 16:1661-1687.
+	- Quian Quiroga R, Nadasdy Z, Ben-Shaul Y (2004) 
+	**Unsupervised Spike Detection and Sorting with 
+	Wavelets and Superparamagnetic Clustering**. 
+	Neural Comp 16:1661-1687.
 
 
 L-ratio calculation is computed following:
 
-- Schmitzer-Torbert et al. **Quantitative measures of cluster quality for use in extracellular recordings** Neuroscience 131 (2005) 1–11 11
+	- Schmitzer-Torbert et al. **Quantitative measures of 
+	cluster quality for use in extracellular recordings** 
+	Neuroscience 131 (2005) 1–11 11
 
 Confusion Matrix calculation is computed acording to:
 
-- Alex H. Barnetta, Jeremy F. Maglandb, Leslie F. Greengardc **Validation of neural spike sorting algorithms without ground-truth information** Journal of Neuroscience Methods 264 (2016) 65–77
+	- Alex H. Barnetta, Jeremy F. Maglandb, Leslie F. 
+	Greengardc **Validation of neural spike sorting 
+	algorithms without ground-truth information** 
+	Journal of Neuroscience Methods 264 (2016) 65–77
 
 Example dataset was obtained from:
 
-- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): **Simultaneous intracellular and extracellular recordings from hippocampus region CA1 of anesthetized rats**. CRCNS.org.http://dx.doi.org/10.6080/K02Z13FP
+	- Henze, DA; Harris, KD; Borhegyi, Z; Csicsvari, J; 
+	Mamiya, A; Hirase, H; Sirota, A; Buzsáki, G (2009): 
+	**Simultaneous intracellular and extracellular recordings 
+	from hippocampus region CA1 of anesthetized rats**. 
+	CRCNS.org.http://dx.doi.org/10.6080/K02Z13FP
 
-
-# ACKNOWLEDGMENT
-
-
-I would like to thank Eugenio Urdapilleta <sup>1</sup>and Damian Dellavale<sup>2</sup> both CAB researchers for their guidance.
- 
-1 : Statistical and Interdisciplinary Physics Division, Atomic Centre Bariloche, Argentina.
- 
-2 : Low Temperature Laboratory, Atomic Centre Bariloche, Argentina.
+---
+### ACKNOWLEDGMENT
+---
+I would like to thank Eugenio Urdapilleta[<sup>1</sup>](https://www.researchgate.net/profile/Eugenio_Urdapilleta) and Damian Dellavale[<sup>2</sup>](https://www.researchgate.net/profile/Damian_Dellavale2) both CAB researchers for their guidance.
