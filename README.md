@@ -124,7 +124,8 @@ And finally, a confusion matrix will appear on screen:
 
 ![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/confusion.png)
 
-Now we can confirm our first intuition about the accuracy of the third cluster because after blurring each spikes with the noise of its own cluster, the algorithm is able to reproduce the same results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
+
+After blurring each spike with the noise of its own cluster, the algorithm is able to reproduce the results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
 
 #### Quiroga dataset
 
