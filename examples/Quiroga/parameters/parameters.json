@@ -1,0 +1,56 @@
+{
+    "trace" :
+        {
+           "comment": "Here you can define a name for this set of parameters",
+            "name" : "Quian Quiroga artificial dataset"
+        },
+    "spkD" :
+        {
+            "comment": "This section defines parameters regarding the peak detection process",
+            "thres" : 4.0,
+            "way" : "peak",
+            "minD" : 15,
+            "before" : 20,
+            "after" : 43
+        },
+    "filt" :
+        {
+            "comment": "This section defines parameters regarding the filtering process.",
+            "q" : 4,
+            "hz" : 24000,
+            "low": 600,
+            "high": 6000
+        },
+
+    "spkA" :
+        {
+            "comment": "This section defines parameters regarding the interpolation and alignment process.",
+            "resol" : 100
+        },
+    "spkE" :
+        {
+            "comment": "This section defines parameters regarding the deletion of some spikes from the process.",
+            "minD" : 4,
+            "lvl" : 0.7
+        },
+    "wv" :
+        {
+            "comment": "This section defines parameters regarding the wavelet decomposition of spikes.",
+            "lvl" : 4,
+            "func" : "Haar",
+            "mode" : "zero"
+        },
+    "gmm" :
+        {
+            "comment": "This section defines parameters regarding the clustering algorithm.",
+            "maxK" : 8,
+            "ftrs" : 8,
+            "maxCorr" : 0.5,
+            "inits" : 10
+        },
+    "blur" :
+        {
+            "comment": "This section defines parameters regarding the blurring process.",
+            "alpha" : 1.0
+        }
+}

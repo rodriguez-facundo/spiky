@@ -73,6 +73,8 @@ Now you can test **Spiky** by runing one of the available examples. Go to TUTORI
 ### TUTORIAL
 ---
 
+#### Buzsaki dataset
+
 Copy the folder called "buzsaki" that is under "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from BuzsakiLabs. By the way, have you checked his webpage? If you haven't done it yet, here is the [link]( http://buzsakilab.com/wp/)
 
 The dataset we have choosen is the simultaneous intracellular and extracellular recording from the hippocampus of anesthetized rats hc-1 'd533101.dat' which is a good starting point (you can play with other examples later). You can find the dataset details here:
@@ -123,6 +125,55 @@ And finally, a confusion matrix will appear on screen:
 ![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/buzsaki/images/confusion.png)
 
 Now we can confirm our first intuition about the accuracy of the third cluster because after blurring each spikes with the noise of its own cluster, the algorithm is able to reproduce the same results for clusters 0, 1 and 3 but is confusing labels on cluster number 2, so we got our liar.
+
+#### Quiroga dataset
+
+Copy the folder called "Quiroga" that is inside "examples" and paste it in your computer's desktop. The folder contains a dataset obtained from the Centre for Systems Neuroscience at the University of Leicester. Take a moment to check their [webpage](https://www2.le.ac.uk/centres/csn)
+
+The dataset we have choosen is from simulated recording and are available [here](https://www2.le.ac.uk/centres/csn/research-2/spike-sorting):
+
+Now, open a terminal, navegate up to "Quiroga" folder and type:
+
+	`python quiroga.py`
+
+The terminal will prompt you with some general information like these:
+
+	parameters/parameters.json file loaded correctly.
+	Preprocesing
+		Simultaneous spikes deleted: 	85
+		Interpolated spike deleted: 	4
+		Threshold: 			106.75
+		Detected peaks:		3336
+		Extra features:		Energy, Amplitud, Area
+		Preprocessing time: 		2.91 sec.
+		DONE
+	Clustering
+		100% | Elapsed Time: 0:00:03|################|Time: 0:00:03 | Neurons:      5
+		Clusters found: 	5
+		CLustering time: 		6.61 sec.
+		L-ratios:
+		0: 29.42
+		1: 0.00
+		2: 0.00
+		3: 0.00
+		4: 17.12
+		DONE
+
+When the process is finished, you should see a picture like the one below showing the different spikes grouped by cluster:
+
+![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/Quiroga/images/spikes.png)
+
+The algorithm has found 5 clusters, but ones again, the l-ratios are telling us that 2 of the clusters have spikes that are very close to them, so let's run a blurring test. Please, close the previews plot and wait for the blur test to finish. A print like this will be shown:
+
+	Bluring
+		100% | Elapsed Time: 0:00:02|################|Time: 0:00:02 | Neurons:      6
+		DONE
+
+And finally, a confusion matrix will appear on screen:
+
+![alt text](https://raw.githubusercontent.com/rodriguez-facundo/Spiky/master/examples/Quiroga/images/confusion.png)
+
+We can see that two of the clusters are mixing spikes.
 
 ---
 ### DOCUMENTATION

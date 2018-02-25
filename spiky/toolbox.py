@@ -17,7 +17,7 @@ from sklearn.covariance import MinCovDet
 from sklearn.preprocessing import StandardScaler
 from sklearn.mixture import GaussianMixture as GMM
 
-def pk(y, thres, min_dist=70, way='peaks'):
+def pk(y, thres, min_dist=70, way='peak'):
     """Peak detection routine.
 
     Finds the numeric index of peaks in *y* by taking its first
@@ -34,7 +34,7 @@ def pk(y, thres, min_dist=70, way='peaks'):
        Minimum distance between detections (peak with
        highest amplitude is preferred).
     way : str (optional)
-        If 'peaks' computes maximum
+        If 'peak' computes maximum
         If 'valley' computes minimum
 
     Returns
@@ -156,7 +156,7 @@ def simultaneous(spk, min_dist, tol):
 
     return out
 
-def shift(spikes, peaks, res=100, way='peaks'):
+def shift(spikes, peaks, res=100, way='peak'):
     ''' Shift data series in order to align
         maximum/minimum with serie indices.
 
@@ -197,8 +197,10 @@ def shift(spikes, peaks, res=100, way='peaks'):
         f = cs(range(size), spk, bc_type='natural')
 
         # compute max/min displacement
-        disp = (np.argmax(f(t)) if way=='peak' else np.argmin(f(t)))\
-                /res - np.argmin(spk)
+        if way=='valley':
+            disp = np.argmin(f(t)) /res - np.argmin(spk)
+        else:
+            disp = np.argmax(f(t)) /res - np.argmax(spk)
 
         # delete spike if minimum moved further than one position
         if abs(disp)>1:
@@ -413,7 +415,7 @@ def l_ratio(X, labels):
 
     return lr
 
-def blur(data, labels, alpha=0.1, align=20, way='peaks'):
+def blur(data, labels, alpha=0.1, align=20, way='peak'):
     '''Blurs spikes with other spikes within the same label
 
     Parameter
