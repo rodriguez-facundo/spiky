@@ -8,9 +8,9 @@
 
 **Spiky** will allow you to sort spikes from single electrodes. The clustering is performed by a Gaussian Mixture Model (GMM) and vanilla Expectation-Maximization (EM) algorithm. To penalize complexity we are using Bayesian Information Criterion (BIC).
 
-**Spiky** is able to run confusion tests to evaluate how prone to misclassification the clusters are. And also provides a cuantitative meassure of how far each cluster is from the rest (in terms of mahalanobis distance). 
+**Spiky** is able to run confusion tests to evaluate how prone to misclassification the clusters are. And also provides a quantitative meassure of how far each cluster is from the rest (in terms of mahalanobis distance). 
 
-Please check our "Turorial section" to get an intuition of how to run **Spiky**. And don't forget to keep an eye on the "Description Section" to understand how **Spiky** works.
+Please check our "Tutorial section" to get an intuition of how to run **Spiky**. And don't forget to keep an eye on the "Description Section" to understand how **Spiky** works.
 
 
 ---
