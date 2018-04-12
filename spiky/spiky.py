@@ -55,6 +55,10 @@ class New():
         self.loadParams(pfile=self.pfile)
         self.loadRawFile(rfile=self.rfile)
 
+    def loadParamsDict(self, params):
+        '''load parameters json object'''
+        self.prms = params
+
     def loadParams(self, pfile):
         '''load parameters from json file'''
         params = dict()
@@ -128,19 +132,23 @@ class New():
         low = self.prms['filt']['low']
         high = self.prms['filt']['high']
         nyq = self.prms['filt']['hz']
+        downSample = self.prms['filt']['downSamplingFactor']
 
-        # Filter constructor
-        sos = signal.butter(Q, [1. * low / nyq, 1. * high / nyq],
-            btype = kind, output='sos')
 
-        # Apply filter (phase may be shifted)
-        x = signal.sosfilt(sos, self.raw)
+        if kind=='bandpass':
+            # Filter constructor
+            b, a = signal.butter(N=Q, Wn=[2*low/fs, 2*high/fs],
+                                btype='bandpass')
+            # filter 0 shift and downsampling
+            self.raw = signal.filtfilt(b, a, self.raw)
 
-        # Reverse data
-        x = f_eeg[::-1]
-
-        # Apply filter (correct phase shift)
-        self.raw = signal.sosfilt(sos, x)
+            # down sample signal by "downSample" factor
+            if downSample>1:
+                return signal.decimate(self.raw, q=downSample)
+            else:
+                return x
+        else:
+            raise Exception('Not a valid filter kind')
 
     def run(self):
         # check required data is available
@@ -207,7 +215,9 @@ class New():
         self.lr = tb.l_ratio(self.X, self.labels)
 
         # print clustering information
-        tb.clusteringPrint(labels=set(self.labels), t=start_time, lratios=self.lr)
+        tb.clusteringPrint(labels=set(self.labels),
+                            t=start_time,
+                            lratios=self.lr)
 
     def plotClusters(self):
         ''' plot spikes based on clustering results'''
@@ -230,7 +240,7 @@ class New():
         plt.setp([a.get_xticklabels() for a in fig.axes], visible=False)
         plt.show()
 
-    def blur(self):
+    def blur(self, plot=True):
         ''' perform self bluring between spikes belonging to the same label'''
 
         print('Bluring')
@@ -263,4 +273,4 @@ class New():
         print('  DONE')
 
         # plot confusion matrix
-        tb.confusion_matrix(self.labels, labels)
+        self.confusion, self.l1, self.l2 = tb.confusion_matrix(self.labels, labels, plot=plot)

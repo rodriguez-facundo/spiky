@@ -470,7 +470,7 @@ def blur(data, labels, alpha=0.1, align=20, way='peak'):
 
     return out
 
-def confusion_matrix(labels1, labels2):
+def confusion_matrix(labels1, labels2, plot=True):
     '''build confusion matrix after bluring spikes with themselfs
 
     Parameters
@@ -512,8 +512,17 @@ def confusion_matrix(labels1, labels2):
     # rearange confusion matrix
     M = M[:,col][row]
 
-    # ploting
-    plot_confusion(M, np.array(list(unique_l2))[col], np.array(list(unique_l1))[row])
+    l1 = np.array(list(unique_l1))[row]
+    l2 = np.array(list(unique_l2))[col]
+    if plot:
+        # ploting
+        plot_confusion(M, l2, l1)
+    else:
+        l1 = [str(chr(65+i)) for i in l1]
+        l2 = [str(chr(65+i)) for i in l2]
+        M = [[int(value) for value in vector] for vector in M]
+        M = [ M[-1-i] for i in range(len(M))]
+        return M, l1, l2
 
 def plot_confusion(M, labelx, labely):
     '''plots confusion matrix'''
